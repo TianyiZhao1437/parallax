@@ -271,8 +271,8 @@ def monkey_patch_make_layers(
     pp_rank: Optional[int] = None,
     pp_size: Optional[int] = None,
     prefix: str = "",
-    return_tuple: bool = True,
-    offloader_kwargs: Dict[str, Any] = {},
+    return_tuple: bool = False,
+    offloader_kwargs: Optional[Dict[str, Any]] = None,
 ) -> Tuple[int, int, torch.nn.ModuleList]:
     """A monkey patch to replace sglang.srt.utils.make_layers"""
     # circula imports
@@ -290,7 +290,7 @@ def monkey_patch_make_layers(
                 layer_fn(idx=idx, prefix=add_prefix(idx, prefix))
                 for idx in range(start_layer, end_layer)
             ),
-            **offloader_kwargs,
+            **(offloader_kwargs or {}),
         )
         + [PPMissingLayer(return_tuple=return_tuple) for _ in range(end_layer, num_hidden_layers)]
     )
