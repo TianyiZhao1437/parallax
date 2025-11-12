@@ -22,7 +22,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import sglang
 import sglang.srt.distributed.parallel_state
-import sglang.srt.utils
 import torch
 from sglang.srt.distributed import get_world_group
 from sglang.srt.distributed.parallel_state import (
