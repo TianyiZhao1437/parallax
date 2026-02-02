@@ -149,11 +149,17 @@ class RequestHandler:
                     logger.debug(f"Streaming response initiated for {request_id}")
                     return resp
                 else:
+                    a=time.time()
                     response = stub.chat_completion(request_data)
                     content = (await anext(iterate_in_threadpool(response))).decode()
                     logger.debug(f"Non-stream response completed for {request_id}")
                     # response is a JSON string; parse to Python object before returning
-                    return JSONResponse(content=json.loads(content))
+                    b=time.time()
+                    content=json.loads(content)
+                    c=time.time()
+                    print("[ty]response=", b-a)
+                    print("[ty]load=", c-b)
+                    return JSONResponse(content)
             except Exception as e:
                 forward_attempts += 1
                 if forward_attempts < self.MAX_FORWARD_RETRY:
