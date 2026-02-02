@@ -159,6 +159,7 @@ class RequestHandler:
                     c=time.time()
                     print("[ty]response=", b-a)
                     print("[ty]load=", c-b)
+                    print("[ty]finish_time=", c)
                     return JSONResponse(content)
             except Exception as e:
                 forward_attempts += 1
