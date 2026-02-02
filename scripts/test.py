@@ -3,7 +3,7 @@ import threading
 
 def forward_request():
     response = requests.post(
-        "https://localhost:3001/v1/chat/completions",
+        "http://localhost:3001/v1/chat/completions",
         headers={
             "Content-Type": "application/json"
         },
