@@ -22,7 +22,6 @@ def forward_request():
             }
         }
     )
-    print(response.json())
 
 thread_pool=[]
 for i in range(48):
