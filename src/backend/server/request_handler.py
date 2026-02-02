@@ -155,12 +155,13 @@ class RequestHandler:
                     logger.debug(f"Non-stream response completed for {request_id}")
                     # response is a JSON string; parse to Python object before returning
                     b=time.time()
-                    content=json.loads(content)
+                    # content=json.loads(content)
                     c=time.time()
                     print("[ty]response=", b-a)
                     print("[ty]load=", c-b)
                     print("[ty]finish_time=", c)
-                    return JSONResponse(content)
+                    return JSONResponse(content={"error": "Internal server error"},
+            status_code=200,)
             except Exception as e:
                 forward_attempts += 1
                 if forward_attempts < self.MAX_FORWARD_RETRY:
