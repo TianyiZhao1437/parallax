@@ -9,6 +9,7 @@ def forward_request():
         },
         json={
             "model": "default",
+            "max_tokens": 8192,
             "messages": [
                 {
                     "role": "user",
@@ -21,6 +22,7 @@ def forward_request():
             }
         }
     )
+    print(response.json())
 
 thread_pool=[]
 for i in range(48):
